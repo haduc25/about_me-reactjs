@@ -1,5 +1,6 @@
 import React from 'react';
 import './footer.css';
+import { handleNotify } from '../../utils/utils';
 
 const Footer = () => {
     return (
@@ -14,13 +15,26 @@ const Footer = () => {
                         </a>
                     </li>
                     <li>
-                        <a href="#portfolio" className="footer__link">
+                        <a href="#project" className="footer__link">
                             Project
                         </a>
                     </li>
                     <li>
-                        <a href="#testimonials" className="footer__link">
-                            Testimonials
+                        <a
+                            href="#testimonials"
+                            className="footer__link"
+                            onClick={(e) =>
+                                handleNotify(e, {
+                                    isQR: true,
+                                    title: 'Buy me a lollipop 🍭',
+                                    content: '❤️❤️❤️Thanks for support❤️❤️❤️',
+                                    autoClose: 10000,
+                                    // autoClose: 1000,
+                                    // autoClose: false,
+                                })
+                            }
+                        >
+                            Donate
                         </a>
                     </li>
                 </ul>
@@ -34,8 +48,8 @@ const Footer = () => {
                         <i className="bx bxl-instagram"></i>
                     </a>
 
-                    <a href="https://twitter.com/" className="footer__social-link" target="_blank">
-                        <i className="bx bxl-twitter"></i>
+                    <a href="https://www.tiktok.com/@25sdev" className="footer__social-link" target="_blank">
+                        <i className="bx bxl-tiktok"></i>
                     </a>
 
                     <a href="https://github.com/haduc25" className="footer__social-link" target="_blank">
@@ -43,7 +57,9 @@ const Footer = () => {
                     </a>
                 </div>
 
-                <span className="footer__copy">&#169; haduc25. All rigths reserved</span>
+                <span className="footer__copy">
+                    Copyright &#169; {new Date().getFullYear()} haduc25. All rigths reserved
+                </span>
             </div>
         </footer>
     );

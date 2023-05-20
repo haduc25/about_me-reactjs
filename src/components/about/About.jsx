@@ -2,8 +2,10 @@ import React from 'react';
 import './about.css';
 // import AboutImg from '../../assets/about.jpg';
 import AboutImg from '../../assets/about2.jpg';
-import CV from '../../assets/John-Cv.pdf';
+// import CV from '../../assets/John-Cv.pdf';
+import CV from '../../assets/Minh-Duc_CV.pdf';
 import Info from './Info';
+import { handleNotify } from '../../utils/utils';
 
 const About = () => {
     return (
@@ -17,11 +19,25 @@ const About = () => {
                     <Info />
 
                     <p className="about__description">
-                        Frontend developer, I create web pages with UI / UX user interface, I have years of experience
-                        and many clients are happy with the projects carried out.
+                        {/* Frontend developer, I create web pages with UI / UX user interface, I have years of experience
+                        and many clients are happy with the projects carried out. */}
+                        As a Developer, I can create visually captivating and interactive web pages using ReactJS and
+                        user-friendly mobile apps across different platforms with my development skills.
                     </p>
 
-                    <a download="" href={CV} className="button button--flex">
+                    <a
+                        download=""
+                        href={CV}
+                        className="button button--flex"
+                        onClick={(e) =>
+                            handleNotify(e, {
+                                isPromise: true,
+                                peddingMsg: 'Đang tải...',
+                                successMsg: 'Đang tải xuống tệp CV',
+                                errorMsg: 'Tải xuống thất bại!',
+                            })
+                        }
+                    >
                         Download CV
                         {/* from 'src/assets/files.svg */}
                         <svg

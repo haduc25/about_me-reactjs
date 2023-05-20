@@ -12,11 +12,21 @@ import Contact from './components/contact/Contact';
 import Footer from './components/footer/Footer';
 import ScrollUp from './components/scrollup/ScrollUp';
 import DarkMode from './components/themes/DarkMode';
+import { ToastContainer, toast } from 'react-toastify';
+
+//
+import IPComponent from './utils/IPComponent';
+import DeviceInfoComponent from './utils/DeviceInfoComponent';
+import GetInfoComponent from './utils/GetInfoComponent';
+import TimeTracker from './utils/TimeTracker';
+import CheckLocalStorage from './utils/CheckLocalStorage';
 
 function App() {
     return (
         <>
+            <GetInfoComponent />
             <Header />
+
             <main className="main">
                 <Home />
                 {/* <DarkMode /> */}
@@ -31,6 +41,13 @@ function App() {
 
             <Footer />
             <ScrollUp />
+            <ToastContainer />
+
+            {/* <IPComponent />
+            <DeviceInfoComponent /> */}
+            {/* <GetInfoComponent /> */}
+
+            <CheckLocalStorage />
         </>
     );
 }

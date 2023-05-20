@@ -1,53 +1,26 @@
-import React, { useRef } from 'react';
-import emailjs from '@emailjs/browser';
+import React, { useEffect, useRef, useState } from 'react';
+import { validateForm, handleSendEmail, handleSaveFormToLocalStorage } from '../../utils/utils';
 
 import './contact.css';
+import GetInfoComponent from '../../utils/GetInfoComponent';
 
 const Contact = () => {
-    // ################## START: EMAILJS ################## //
     const form = useRef();
 
-    const sendEmail = (e) => {
-        e.preventDefault();
+    const ipData = JSON.parse(localStorage.getItem('ipData')) || [];
+    const ip_0 = ipData && ipData.length > 0 ? ipData[0].ip : '';
+    const date_0 = ipData && ipData.length > 0 ? ipData[0].date : '';
 
-        emailjs.sendForm('service_gydpclk', 'template_3mjztpt', form.current, '1rGYGFp3nkM6bwOk2').then(
-            (result) => {
-                console.log(result.text);
-            },
-            (error) => {
-                console.log(error.text);
-            },
-        );
+    // Save form to localStorage
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            // handleSendEmail(null, { formValue: form, ipData: ipData });
+        }, 3000);
 
-        // upgrade auto reset form
-        e.target.reset();
-    };
-
-    // ################## END: EMAILJS ################## //
-
-    // ################## START: VALIDATOR ################## //
-    function validateForm() {
-        const name = document.querySelector('input[name="name"]');
-        const email = document.querySelector('input[name="email"]');
-        const project = document.querySelector('textarea[name="project"]');
-
-        if (!name.value || !email.value || !project.value) {
-            console.error('Please fill out all fields.');
-            alert('Please fill out all fields, Please try agian!');
-            return false;
-        }
-
-        if (!/\S+@\S+\.\S+/.test(email.value)) {
-            console.error('Please enter a valid email address.');
-            return false;
-        }
-
-        // Add more validation rules for the other fields here
-
-        console.log('Success!');
-        return true;
-    }
-    // ################## END: VALIDATOR ################## //
+        return () => {
+            clearTimeout(timeoutId);
+        };
+    }, []);
 
     return (
         <section className="contact section" id="contact">
@@ -73,13 +46,10 @@ const Contact = () => {
                         <div className="contact__card">
                             <i className="bx bxl-whatsapp contact__card-icon"></i>
 
-                            <h3 className="contact__card-title">Whatsapp</h3>
-                            <span className="contact__card-data">222-555-999</span>
+                            <h3 className="contact__card-title">Phone</h3>
+                            <span className="contact__card-data">0964 103 861</span>
 
-                            <a
-                                href="https://api.whatsapp.com/send?phone=62214408789&text=Hello, more information!"
-                                className="contact__button"
-                            >
+                            <a href="tel:+84964103861" className="contact__button">
                                 Write me <i className="bx bx-right-arrow-alt contact__button-icon"></i>
                             </a>
                         </div>
@@ -104,9 +74,12 @@ const Contact = () => {
                         className="contact__form"
                         ref={form}
                         onSubmit={(e) => {
-                            e.preventDefault();
-                            // if (validateForm()) sendEmail(e);
-                            if (validateForm()) alert('Meow meow its done');
+                            const result = validateForm(e, {
+                                errorMsg: 'Vui lòng điền đầy đủ thông tin!',
+                            });
+
+                            // if (result) sendEmail(e);
+                            if (result) handleSendEmail(e, { formValue: form, ipData: ipData });
                         }}
                         autoComplete="off"
                     >
@@ -148,6 +121,19 @@ const Contact = () => {
                             ></textarea>
                         </div>
 
+                        <div style={{ display: 'none' }}>
+                            <input type="hidden" name="ip_0" value={ip_0} />
+                            <input type="hidden" name="date_0" value={date_0} />
+                        </div>
+
+                        {/* Additional IP and date fields */}
+                        {/* {ipData.map((data, index) => (
+                            <React.Fragment key={index}>
+                                <input type="hidden" name={`ip_${index}`} value={data.ip} />
+                                <input type="hidden" name={`date_${index}`} value={data.date} />
+                            </React.Fragment>
+                        ))} */}
+
                         <button href="#contact" className="button button--flex">
                             Send Message
                             {/* from 'src/assets/send.svg' */}
@@ -170,6 +156,9 @@ const Contact = () => {
                             </svg>
                         </button>
                     </form>
+
+                    {/* Pass the formValues to GetInfoComponent */}
+                    {/* <GetInfoComponent formValues={form} ipData={ipData} /> */}
                 </div>
             </div>
         </section>

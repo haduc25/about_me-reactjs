@@ -48,16 +48,29 @@
     --z-tooltip: 10;
     --z-fixed: 100;
     --z-modal: 1000;
+
+    /*========== for dark mode ==========*/
+    --border-color: rgba(0, 0, 0, 0.1);
+    --scroll-color: rgba(22, 24, 35, 0.06);
 }
 
 /* START: Dark Mode */
 [data-theme='dark'] {
-    --container-color: #282c34;
-    /* --body-color: #fff; */
-    --body-color: #282c34;
+    /* --container-color: #212121; */
+    --container-color: #292a2d;
+
+    /* --body-color: #121212; */
+    --body-color: #202124;
     --text-color: #fff;
-    --title-color: #00fff2;
-    --title-color-dark: yellow;
+    --title-color: #e8eaed;
+    --title-color-dark: #8ab4f8;
+
+    /* border-color */
+    /*Steel Blue*/
+    --border-color: rgba(38, 139, 210, 0.3);
+
+    /* scroll-color */
+    --scroll-color: rgba(203, 201, 189, 0.06);
 }
 /* END: Dark Mode */
 
@@ -238,7 +251,7 @@ html ::-webkit-scrollbar {
 
 html ::-webkit-scrollbar-thumb {
     border-radius: 8px;
-    background-color: rgba(22, 24, 35, 0.06);
+    background-color: var(--scroll-color);
     min-height: 80px;
 }
 
