@@ -1,4 +1,4 @@
-import Work1 from '../../assets/works/_face_detection.png';
+import Work1 from '../../assets/works/face_detection.png';
 import Work1Slider from '../../assets/works/face_detection.gif';
 import Work2 from '../../assets/works/happy.png';
 import Work2Slider from '../../assets/works/happy_slider.gif';
