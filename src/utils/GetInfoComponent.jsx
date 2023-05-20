@@ -54,7 +54,7 @@ const GetInfoComponent = ({ ...props }) => {
             if (storedData.length === 0 || storedDate !== currentDate) {
                 storedData[0] = { ip: ipAddress, date: currentDate };
                 localStorage.setItem('ipData', JSON.stringify(storedData));
-                console.log('Stored IP and date:', storedData);
+                // console.log('Stored IP and date:', storedData);
 
                 refreshPageAndUpdateLocalStorage(); // Refresh the page or update local storage
             }

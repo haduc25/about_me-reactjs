@@ -200,7 +200,6 @@ export const handleSendEmail = (e, { formValue, isAutoSending = false }) => {
 
     const templateId = isAutoSending ? 'template_q24uo6j' : 'template_3mjztpt';
     const resetForm = !isAutoSending;
-    console.log('2');
 
     // emailjs
     //     .sendForm('service_gydpclk', templateId, formValue.current, '1rGYGFp3nkM6bwOk2')
@@ -283,23 +282,16 @@ export const handleSendEmail2 = () => {
     const ip_0 = ipData && ipData.length > 0 ? ipData[0].ip : '';
     const date_0 = ipData && ipData.length > 0 ? ipData[0].date : '';
     const templateId = 'template_q24uo6j';
-    const resetForm = true;
     const formElement = document.querySelector('.contact__form'); // Replace with the appropriate selector for your form element
-    console.log(ip_0, date_0, formElement);
+    // console.log(ip_0, date_0, formElement);
     emailjs
         .sendForm('service_gydpclk', templateId, formElement, '1rGYGFp3nkM6bwOk2')
         .then(
             (result) => {
                 console.log(result.text);
-                if (resetForm) {
-                    console.log('done');
-                }
             },
             (error) => {
                 console.log(error.text);
-                if (resetForm) {
-                    console.log('not done');
-                }
             },
         )
         .finally(() => {});

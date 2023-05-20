@@ -10,11 +10,11 @@ const Works = () => {
 
     useEffect(() => {
         if (item.name === 'all') {
-            console.log('projectsData: ', projectsData);
+            // console.log('projectsData: ', projectsData);
             setProjects(projectsData);
         } else {
             const newProjects = projectsData.filter((project) => project.category.toLowerCase() === item.name);
-            console.log('newProjects: ', newProjects);
+            // console.log('newProjects: ', newProjects);
             setProjects(newProjects);
         }
     }, [item]);
@@ -22,11 +22,11 @@ const Works = () => {
     // // handle when clicked
     const handleClick = (e, index) => {
         const selectedCategory = e.target.textContent.trim().toLowerCase();
-        console.log('Selected category:', selectedCategory);
+        // console.log('Selected category:', selectedCategory);
 
         // Filter projects based on selected category
         const filteredProjects = projects.filter((item) => item.category.trim().toLowerCase() === selectedCategory);
-        console.log('Filtered projects:', filteredProjects);
+        // console.log('Filtered projects:', filteredProjects);
 
         // set Item
         setItem({ name: selectedCategory });
@@ -34,8 +34,8 @@ const Works = () => {
         // set Active
         setActive(index);
 
-        console.log('projectsNav:', projectsNav);
-        console.log('projects:', projects);
+        // console.log('projectsNav:', projectsNav);
+        // console.log('projects:', projects);
     };
 
     return (

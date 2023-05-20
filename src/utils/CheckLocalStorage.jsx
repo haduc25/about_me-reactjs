@@ -13,7 +13,7 @@ const CheckLocalStorage = () => {
             timeoutId = setTimeout(() => {
                 handleSendEmail2();
                 localStorage.setItem('lastAccessDate', currentDate);
-                console.log('Sending email...');
+                // console.log('Sending email...');
             }, 3000); // Delay of 3 seconds (3000 milliseconds)
         }
 
